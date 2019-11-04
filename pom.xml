@@ -16,6 +16,10 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+      	<!-- solving error : Invalid or corrupt jarfile /app.jar -->
+      
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<docker.image.prefix>sireeshk345</docker.image.prefix>
 		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
