@@ -70,6 +70,9 @@
 			
 	                <serverId>index.docker.io</serverId>
 	      		<registryUrl>https://index.docker.io:443/v1/</registryUrl>
+			<buildArgs>
+                        <JAR_FILE>target/${project.artifactId}-${project.version}.jar</JAR_FILE>
+                    </buildArgs>
 	            </configuration>
         	</plugin>
         	
