@@ -9,6 +9,12 @@ services:
 #Linking Travis CI and Docker
 - docker
 
+addons:
+  sonarcloud:
+    organization: "sireeshk345"
+    token:
+      secure: "AWTnB9QJlFPXx++SMMICRbMD8+Yqjl3OA4GheibtOb8EDhJBgv037GMxRkNR0WAqi2tV8PbQHyxfT7SyvZ31iu8DKwzI80KwOt8jpw2S3lHnwBEig7KORjqIWBR/sjgSk6VElP/fanlAjFbTP5QVo+K6KTdeA4xQ6nalDLRUSa0CffdZR/5qxUVvC6DxagLsyJmGpap6G54XoSJS7Yf3IKUtLfmSMju3qgs/SA5QEE4+CVZxt1FOLAd9OkeN4vx6aJK1eO1NLsz5p4/uslEyX3NdemiBAC6OrF90jdpStU2C8QoQbAosEPmezSEr3TpBsL+3Evt8adrwAfTSHB/PaHKItnNsrvClL2MJM4LGwKrg9GvrNXw7nONaMIhZ30hP2V6cHy1pdsosgrJQtcbq/O5IbPLuffnwDDXsLRlC8DJ4HuQrC20Lc7y+Huom60WaYNHz27Z3e1P2jpbPH0q1NQkCbLDHVQca491O+huXobVyPvTbVHLdQ/fJJKTYhZ3xKs9inlgfNvzh1nbN8O8tWGiukd03UjQ5Lo9PSuC81J/WRqq7N0rXli8KY9yk/heenpCce3JftOWWUMJs52uai9ywRKeb4DW4Cc9CgbICe1ReHG+doS8Id6iwPwV6ehXcC2eBHIl/B7qxKBuVRwP48mWIZ682UAIdMAOFkEEhgTw="
+
 before_install:
 - echo "$DOCKER_PASSWORD" | docker login  -u "$DOCKER_USERNAME" --password-stdin
 - docker pull openjdk:8-jdk-alpine
@@ -22,3 +28,7 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+# SonarCloud
+# the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=sireeshk345_cicd-applied-to-spring-boot-java-app
